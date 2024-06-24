@@ -1,7 +1,14 @@
 YML_PATH=srcs/docker-compose.yml
 DATA_PATH=/home/${USER}/data
 
-all: build up
+
+
+all: check build up
+
+check:
+	mkdir $(DATA_PATH);
+	mkdir $(DATA_PATH)/wordpress;
+	mkdir $(DATA_PATH)/mariadb;
 
 build:
 	docker compose -f ${YML_PATH} build
