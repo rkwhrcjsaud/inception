@@ -11,7 +11,8 @@ RUN chmod +x /run/php
 
 COPY ./tool/start.sh /usr/local/bin/start.sh
 RUN	chmod +x /usr/local/bin/start.sh
-ENTRYPOINT ["bash", "/usr/local/bin/start.sh"]
+RUN apt install dumb-init
+ENTRYPOINT ["/usr/bin/dumb-init", "--", "bash", "/usr/local/bin/start.sh"]
 
 RUN mkdir -p /var/www/html/wordpress
 RUN chown -R www-data:www-data /var/www/html/wordpress

@@ -28,4 +28,7 @@ RUN sed -i "s#{{DOMAIN_NAME}}#$DOMAIN_NAME#g" /etc/nginx/nginx.conf
 
 EXPOSE 443
 
+RUN apt install dumb-init
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+
 CMD [ "nginx", "-g", "daemon off;" ]
